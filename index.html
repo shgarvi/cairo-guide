@@ -14,51 +14,35 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;font-family:'DM Sans',sans-serif;font-weight:300;background:var(--cream);color:var(--ink);overflow:hidden;}
 
-/* ── HEADER — compact ── */
-header{background:var(--deep);padding:.7rem 1.5rem .5rem;text-align:center;position:relative;overflow:hidden;flex-shrink:0;}
+/* ── HEADER ── */
+header{background:var(--deep);padding:1rem 1.5rem .8rem;text-align:center;position:relative;overflow:hidden;}
 header::before{content:'';position:absolute;inset:0;opacity:.04;
   background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);
   background-size:18px 18px;}
 .hc{position:relative;z-index:1;}
-.eyebrow{font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;}
-header h1{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.5vw,1.9rem);color:var(--sand);line-height:1.1;margin-bottom:.15rem;}
+.eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2.2rem);color:var(--sand);line-height:1.1;margin-bottom:.2rem;}
 header h1 em{color:var(--gold-light);font-style:italic;}
-.hsub{color:rgba(245,237,216,.38);font-size:.65rem;}
+.hsub{color:rgba(245,237,216,.4);font-size:.72rem;}
 
-/* ── ZONE BAR — two rows on mobile ── */
-.zone-bar{
-  background:var(--deep);border-top:1px solid rgba(201,149,58,.15);
-  padding:.38rem .8rem;display:flex;flex-wrap:wrap;gap:.25rem;justify-content:center;
-}
-.ztab{
-  display:flex;align-items:center;gap:.32rem;padding:.22rem .55rem;
-  font-size:.64rem;font-weight:500;cursor:pointer;border-radius:20px;
-  border:1.5px solid transparent;color:rgba(245,237,216,.52);transition:all .18s;white-space:nowrap;
-}
+/* ── VISIT COUNTER ── */
+.visit-bar{background:rgba(0,0,0,.3);padding:.28rem 1rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);}
+.vstat{display:flex;align-items:center;gap:.32rem;font-size:.62rem;color:rgba(245,237,216,.5);}
+.vstat strong{color:var(--gold-light);font-weight:600;font-size:.72rem;}
+
+/* ── ZONE BAR ── */
+.zone-bar{background:var(--deep);border-top:1px solid rgba(201,149,58,.15);
+  padding:.45rem 1rem;display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;}
+.ztab{display:flex;align-items:center;gap:.38rem;padding:.28rem .65rem;
+  font-size:.68rem;font-weight:500;cursor:pointer;border-radius:20px;
+  border:1.5px solid transparent;color:rgba(245,237,216,.55);transition:all .18s;white-space:nowrap;}
 .ztab:hover{color:var(--sand);background:rgba(255,255,255,.05);}
 .ztab.active{color:white;border-color:currentColor;background:rgba(255,255,255,.08);}
-.ztab-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-
-/* ── TOUCH HINT ── */
-.touch-hint{
-  position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
-  background:rgba(26,18,8,.72);backdrop-filter:blur(6px);
-  color:rgba(245,237,216,.75);font-size:.65rem;font-weight:500;
-  padding:.35rem .85rem;border-radius:20px;
-  pointer-events:none;white-space:nowrap;
-  animation:hintFade 3s ease 1.5s forwards;
-  opacity:0;animation-fill-mode:both;
-}
-@keyframes hintFade{
-  0%{opacity:0;transform:translateX(-50%) translateY(4px);}
-  15%{opacity:1;transform:translateX(-50%) translateY(0);}
-  75%{opacity:1;}
-  100%{opacity:0;}
-}
+.ztab-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
 /* ── LAYOUT ── */
-.app{display:flex;flex-direction:column;height:calc(100vh - 88px);}
-.right{flex:1;display:flex;flex-direction:column;min-height:0;position:relative;}
+.app{display:flex;flex-direction:column;height:calc(100vh - 120px);}
+.right{flex:1;display:flex;flex-direction:column;min-height:0;}
 
 /* ── MAP ── */
 .map-panel{flex:1;position:relative;overflow:hidden;background:#eddfc0;min-height:0;}
@@ -67,118 +51,87 @@ header h1 em{color:var(--gold-light);font-style:italic;}
 /* Zone areas */
 .zone-area{transition:opacity .25s,filter .25s;cursor:pointer;}
 .zone-area:hover{filter:brightness(1.08);}
-.zone-area.dimmed{opacity:.18;filter:grayscale(.5);}
-.zone-area.highlighted{opacity:1;filter:brightness(1.1) drop-shadow(0 0 12px rgba(0,0,0,.3));}
+.zone-area.dimmed{opacity:.2;filter:grayscale(.5);}
+.zone-area.highlighted{opacity:1;filter:brightness(1.1) drop-shadow(0 0 10px rgba(0,0,0,.3));}
 
-/* Pins — larger invisible tap area */
+/* Pins */
 .map-pin{cursor:pointer;transition:transform .18s;}
-.map-pin:hover{transform:scale(1.2);}
-.map-pin.active-pin{transform:scale(1.38);}
-.map-pin.dimmed-pin{opacity:.15;}
-.pin-tap{fill:transparent;} /* invisible large tap area */
+.map-pin:hover{transform:scale(1.22);}
+.map-pin.active-pin{transform:scale(1.4);}
+.map-pin.dimmed-pin{opacity:.18;}
 .pin-must-ring{transform-origin:center;transform-box:fill-box;animation:pulse 2.2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:.9;transform:scale(1);}50%{opacity:.2;transform:scale(1.45);}}
+@keyframes pulse{0%,100%{opacity:.9;transform:scale(1);}50%{opacity:.2;transform:scale(1.4);}}
 
-/* ── BOTTOM SHEET — slides up over map ── */
-.sheet-overlay{
-  position:absolute;inset:0;background:rgba(26,18,8,.0);
-  pointer-events:none;transition:background .25s;z-index:10;
-}
-.sheet-overlay.open{pointer-events:all;background:rgba(26,18,8,.25);}
-
+/* ── DETAIL PANEL ── */
 .detail-panel{
-  position:absolute;bottom:0;left:0;right:0;
-  background:white;border-radius:18px 18px 0 0;
-  box-shadow:0 -4px 32px rgba(0,0,0,.18);
-  max-height:72vh;overflow-y:auto;
-  transform:translateY(100%);
-  transition:transform .3s cubic-bezier(.32,1,.44,1);
-  z-index:11;
+  flex-shrink:0;background:white;
+  border-top:2px solid rgba(196,98,45,.15);
+  max-height:42vh;overflow-y:auto;
+  display:none;animation:su .2s ease;
 }
-.detail-panel.vis{transform:translateY(0);}
+.detail-panel.vis{display:block;}
+@keyframes su{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* Sheet drag handle */
-.sheet-handle{
-  width:36px;height:4px;border-radius:2px;
-  background:rgba(45,32,16,.15);
-  margin:.7rem auto .3rem;
-}
-
-.dp-inner{padding:.6rem 1.4rem 1.4rem;}
-.dp-hdr{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.65rem;}
-.dp-ico{font-size:1.55rem;line-height:1;flex-shrink:0;}
+.dp-inner{padding:1rem 1.4rem 1rem;}
+.dp-hdr{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.7rem;}
+.dp-ico{font-size:1.6rem;line-height:1;flex-shrink:0;}
 .dp-ta{flex:1;min-width:0;}
-.dp-zt{font-size:.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.12rem;}
+.dp-zt{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.15rem;}
 .dp-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.2;}
-.dp-badges{display:flex;gap:.22rem;flex-wrap:wrap;margin-top:.22rem;}
-.pb{font-size:.54rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.1rem .36rem;border-radius:3px;color:white;}
+.dp-badges{display:flex;gap:.25rem;flex-wrap:wrap;margin-top:.25rem;}
+.pb{font-size:.55rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .38rem;border-radius:3px;color:white;}
 .pb.must{background:var(--terra);}
 .pb.book{background:var(--lapis);}
 .pb.warn{background:#b45309;}
-.dp-close{
-  background:rgba(45,32,16,.08);border:none;cursor:pointer;
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;color:rgba(45,32,16,.5);flex-shrink:0;
-}
-.dp-close:hover{background:rgba(45,32,16,.14);color:var(--ink);}
+.dp-close{background:none;border:none;cursor:pointer;font-size:1rem;color:rgba(45,32,16,.3);padding:.15rem;flex-shrink:0;line-height:1;}
+.dp-close:hover{color:var(--ink);}
 
-.dp-body{display:grid;grid-template-columns:1fr 205px;gap:1.1rem;align-items:start;}
+.dp-body{display:grid;grid-template-columns:1fr 210px;gap:1.2rem;align-items:start;}
 .dp-desc{font-size:.78rem;line-height:1.65;color:rgba(45,32,16,.8);}
-.dp-meta{display:flex;flex-direction:column;gap:.35rem;}
-.mr{font-size:.69rem;display:flex;gap:.28rem;align-items:flex-start;}
-.ml{font-weight:600;color:rgba(45,32,16,.4);white-space:nowrap;min-width:42px;flex-shrink:0;}
+.dp-meta{display:flex;flex-direction:column;gap:.38rem;}
+.mr{font-size:.7rem;display:flex;gap:.3rem;align-items:flex-start;}
+.ml{font-weight:600;color:rgba(45,32,16,.4);white-space:nowrap;min-width:44px;flex-shrink:0;}
 .mv{color:var(--ink);}
-.price-box{background:rgba(201,149,58,.08);border:1px solid rgba(201,149,58,.22);border-radius:6px;padding:.36rem .5rem;margin-top:.16rem;}
-.warn-box{background:rgba(180,83,9,.07);border:1px solid rgba(180,83,9,.2);border-radius:6px;padding:.34rem .48rem;font-size:.67rem;color:#92400e;margin-top:.36rem;line-height:1.45;}
+.price-box{background:rgba(201,149,58,.08);border:1px solid rgba(201,149,58,.22);border-radius:6px;padding:.38rem .52rem;margin-top:.18rem;}
+.warn-box{background:rgba(180,83,9,.07);border:1px solid rgba(180,83,9,.2);border-radius:6px;padding:.36rem .5rem;font-size:.68rem;color:#92400e;margin-top:.38rem;line-height:1.45;}
 
-/* ── CTA BUTTONS ── */
+/* ── CTA BUTTONS — big, tappable ── */
 .dp-cta{margin-top:.85rem;display:flex;gap:.5rem;flex-wrap:wrap;}
 .btn-b,.btn-m{
-  display:inline-flex;align-items:center;justify-content:center;gap:.32rem;
-  text-decoration:none;font-size:.76rem;font-weight:600;
-  padding:.6rem 1rem;border-radius:8px;
-  min-height:44px;cursor:pointer;transition:all .15s;
+  display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  text-decoration:none;font-size:.78rem;font-weight:600;
+  padding:.65rem 1.1rem;border-radius:8px;
+  min-height:44px; /* mobile tap target */
+  cursor:pointer;transition:all .15s;
 }
 .btn-b{background:var(--lapis);color:white;border:none;}
 .btn-b:hover{background:var(--lapis-l);}
-.btn-m{background:rgba(196,98,45,.1);color:var(--terra);border:1.5px solid rgba(196,98,45,.28);}
+.btn-m{background:rgba(196,98,45,.1);color:var(--terra);border:1.5px solid rgba(196,98,45,.3);}
 .btn-m:hover{background:rgba(196,98,45,.18);}
 
 /* Scrollbar */
 .detail-panel::-webkit-scrollbar{width:4px;}
-.detail-panel::-webkit-scrollbar-thumb{background:rgba(196,98,45,.18);border-radius:2px;}
+.detail-panel::-webkit-scrollbar-thumb{background:rgba(196,98,45,.2);border-radius:2px;}
 
-/* ── LAPTOP — side panel ── */
-@media(min-width:1024px){
-  html,body{overflow:hidden;}
-  .app{flex-direction:row;height:calc(100vh - 88px);}
-  .right{flex-direction:row;flex:1;}
-  .map-panel{flex:1;}
-
-  /* On laptop: panel is a fixed right column, not a bottom sheet */
-  .sheet-overlay{display:none;}
-  .detail-panel{
-    position:relative;bottom:auto;left:auto;right:auto;
-    transform:none!important;
-    width:360px;flex-shrink:0;border-radius:0;
-    border-left:2px solid rgba(196,98,45,.12);
-    max-height:100%;box-shadow:none;
-    display:none;
-  }
-  .detail-panel.vis{display:flex;flex-direction:column;}
-  .sheet-handle{display:none;}
-  .touch-hint{display:none;}
-}
-
-/* ── MOBILE tweaks ── */
+/* ── RESPONSIVE ── */
 @media(max-width:640px){
+  html,body{overflow:auto;}
+  .app{height:auto;overflow:visible;}
+  .right{overflow:visible;}
+  .map-panel{height:55vw;min-height:260px;max-height:420px;flex:none;}
+  .detail-panel{max-height:none;}
   .dp-body{grid-template-columns:1fr;}
-  .dp-inner{padding:.5rem 1.1rem 1.2rem;}
-  header{padding:.55rem 1rem .4rem;}
-  .zone-bar{padding:.32rem .5rem;}
-  .ztab{font-size:.6rem;padding:.2rem .45rem;}
-  .app{height:calc(100vh - 80px);}
+  .dp-inner{padding:.85rem 1rem;}
+  header{padding:.75rem 1rem .6rem;}
+  .zone-bar{padding:.4rem .6rem;}
+  .ztab{font-size:.62rem;padding:.24rem .52rem;}
+}
+@media(min-width:1200px){
+  .app{flex-direction:row;height:calc(100vh - 120px);}
+  .right{flex-direction:row;flex:1;}
+  .map-panel{flex:1.4;}
+  .detail-panel{width:380px;flex-shrink:0;max-height:100%;border-top:none;border-left:2px solid rgba(196,98,45,.12);overflow-y:auto;}
+  .detail-panel.vis{display:flex;flex-direction:column;}
 }
 </style>
 </head>
@@ -191,13 +144,18 @@ header h1 em{color:var(--gold-light);font-style:italic;}
     <div class="hsub">Pincha en una zona o en un pin para ver detalles, precios y reservas</div>
   </div>
   <div class="zone-bar" id="zoneTabs"></div>
+  <div class="visit-bar" id="visitBar">
+    <div class="vstat">👁️ Visitas totales: <strong id="vcTotal">—</strong></div>
+    <div class="vstat">🌍 Países: <strong id="vcCountries">—</strong></div>
+    <div class="vstat">📅 Hoy: <strong id="vcToday">—</strong></div>
+  </div>
 </header>
 
 <div class="app">
   <div class="right">
 
     <!-- MAP -->
-    <div class="map-panel" id="mapPanel">
+    <div class="map-panel">
       <svg id="cairo-map" viewBox="0 0 800 580" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -224,11 +182,13 @@ header h1 em{color:var(--gold-light);font-style:italic;}
               fill="none" stroke="#5da0c8" stroke-width="36" stroke-linecap="round" opacity=".6"/>
         <path d="M372 0 C366 60 360 115 356 170 C352 225 350 268 354 310 C358 352 360 395 357 438 C354 481 350 528 346 580"
               fill="none" stroke="#96cce6" stroke-width="20" stroke-linecap="round" opacity=".45"/>
+        <!-- Gezira island -->
         <ellipse cx="342" cy="278" rx="15" ry="46" fill="#4a9a62" opacity=".5"/>
+        <!-- Nile label -->
         <text font-family="Playfair Display,serif" font-size="11" fill="#1e4f7a" font-style="italic" opacity=".55"
               transform="translate(385,148) rotate(-88)">Nilo</text>
 
-        <!-- ZONA 1: GIZA -->
+        <!-- ── ZONA 1: GIZA (SW) — large ── -->
         <g class="zone-area" id="za-giza" data-zone="giza" onclick="selectZone('giza')" style="cursor:pointer" filter="url(#sh)">
           <path d="M8 360 C30 318 82 290 148 284 C214 278 268 296 294 332 C320 368 314 418 292 456 C270 494 222 516 170 520 C118 524 58 504 28 470 C-2 436 -14 402 8 360Z"
                 fill="url(#g1)" stroke="#C4622D" stroke-width="2"/>
@@ -237,25 +197,25 @@ header h1 em{color:var(--gold-light);font-style:italic;}
           <text x="152" y="430" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="rgba(255,255,255,.85)">Zona 1</text>
         </g>
 
-        <!-- ZONA 2: ISLÁMICO -->
+        <!-- ── ZONA 2: ISLÁMICO (E) — large ── -->
         <g class="zone-area" id="za-islamico" data-zone="islamico" onclick="selectZone('islamico')" style="cursor:pointer" filter="url(#sh)">
           <path d="M448 148 C488 128 542 130 582 152 C622 174 644 218 640 264 C636 310 610 346 572 360 C534 374 490 364 464 338 C438 312 424 272 428 236 C432 200 408 168 448 148Z"
                 fill="url(#g2)" stroke="#2B4F7A" stroke-width="2"/>
-          <text x="534" y="148" text-anchor="middle" font-size="26">🕌</text>
-          <text x="534" y="340" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="white" font-weight="700">ISLÁMICO</text>
-          <text x="534" y="356" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.85)">Zona 2</text>
+          <text x="534" y="258" text-anchor="middle" font-size="26">🕌</text>
+          <text x="534" y="286" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="white" font-weight="700">ISLÁMICO</text>
+          <text x="534" y="302" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.85)">Zona 2</text>
         </g>
 
-        <!-- ZONA 3: DOWNTOWN -->
+        <!-- ── ZONA 3: DOWNTOWN (center) ── -->
         <g class="zone-area" id="za-downtown" data-zone="downtown" onclick="selectZone('downtown')" style="cursor:pointer" filter="url(#sh)">
           <path d="M378 148 C406 130 442 130 462 150 C482 170 478 210 464 238 C450 266 426 278 404 270 C382 262 368 238 370 210 C372 182 350 166 378 148Z"
                 fill="url(#g3)" stroke="#5C7A5E" stroke-width="2"/>
-          <text x="418" y="148" text-anchor="middle" font-size="20">🏙️</text>
-          <text x="418" y="168" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="white" font-weight="700">DOWNTOWN</text>
-          <text x="418" y="182" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="rgba(255,255,255,.85)">Zona 3</text>
+          <text x="418" y="212" text-anchor="middle" font-size="20">🏙️</text>
+          <text x="418" y="234" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="white" font-weight="700">DOWNTOWN</text>
+          <text x="418" y="248" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="rgba(255,255,255,.85)">Zona 3</text>
         </g>
 
-        <!-- ZONA 4: ZAMALEK -->
+        <!-- ── ZONA 4: ZAMALEK (W of Nile) ── -->
         <g class="zone-area" id="za-zamalek" data-zone="zamalek" onclick="selectZone('zamalek')" style="cursor:pointer" filter="url(#sh)">
           <path d="M210 148 C240 126 280 122 308 142 C336 162 342 202 336 236 C330 270 308 292 282 296 C256 300 228 284 212 256 C196 228 180 170 210 148Z"
                 fill="url(#g4)" stroke="#8B5E8A" stroke-width="2"/>
@@ -264,7 +224,7 @@ header h1 em{color:var(--gold-light);font-style:italic;}
           <text x="262" y="252" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="rgba(255,255,255,.85)">Zona 4</text>
         </g>
 
-        <!-- ZONA 5: COPTO -->
+        <!-- ── ZONA 5: COPTO (S-center) ── -->
         <g class="zone-area" id="za-copto" data-zone="copto" onclick="selectZone('copto')" style="cursor:pointer" filter="url(#sh)">
           <path d="M350 358 C378 336 420 332 446 352 C472 372 474 410 460 440 C446 470 414 484 384 478 C354 472 334 448 332 418 C330 388 322 380 350 358Z"
                 fill="url(#g5)" stroke="#7A4A2B" stroke-width="2"/>
@@ -273,13 +233,13 @@ header h1 em{color:var(--gold-light);font-style:italic;}
           <text x="402" y="438" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="rgba(255,255,255,.85)">Zona 5</text>
         </g>
 
-        <!-- ZONA 6: MOKATAM -->
+        <!-- ── ZONA 6: MOKATAM (SE) — large ── -->
         <g class="zone-area" id="za-mokatam" data-zone="mokatam" onclick="selectZone('mokatam')" style="cursor:pointer" filter="url(#sh)">
           <path d="M570 296 C608 272 662 268 700 290 C738 312 758 358 752 402 C746 446 716 474 676 480 C636 486 590 468 568 438 C546 408 532 320 570 296Z"
                 fill="url(#g6)" stroke="#1A6B6B" stroke-width="2"/>
-          <text x="648" y="408" text-anchor="middle" font-size="26">🌄</text>
-          <text x="648" y="434" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="white" font-weight="700">MOKATAM</text>
-          <text x="648" y="450" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.85)">Zona 6</text>
+          <text x="648" y="376" text-anchor="middle" font-size="26">🌄</text>
+          <text x="648" y="404" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="white" font-weight="700">MOKATAM</text>
+          <text x="648" y="420" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.85)">Zona 6</text>
         </g>
 
         <!-- Connectors -->
@@ -291,7 +251,7 @@ header h1 em{color:var(--gold-light);font-style:italic;}
           <line x1="572" y1="312" x2="618" y2="336"/>
         </g>
 
-        <!-- Pins -->
+        <!-- Pins rendered by JS -->
         <g id="pins-layer"></g>
 
         <!-- Compass -->
@@ -311,17 +271,10 @@ header h1 em{color:var(--gold-light);font-style:italic;}
           <text x="36" y="-6" text-anchor="middle" font-size="8.5" fill="rgba(245,237,216,.8)" font-family="DM Sans,sans-serif">~5 km</text>
         </g>
       </svg>
-
-      <!-- Touch hint — fades out after 5s -->
-      <div class="touch-hint">👆 Toca una zona o un pin para explorar</div>
     </div>
 
-    <!-- Overlay (mobile only) -->
-    <div class="sheet-overlay" id="sheetOverlay" onclick="closeDetail()"></div>
-
-    <!-- BOTTOM SHEET / SIDE PANEL -->
+    <!-- DETAIL PANEL -->
     <div class="detail-panel" id="detailPanel">
-      <div class="sheet-handle"></div>
       <div class="dp-inner">
         <div class="dp-hdr">
           <div class="dp-ico" id="dIcon"></div>
@@ -347,6 +300,7 @@ header h1 em{color:var(--gold-light);font-style:italic;}
 </div>
 
 <script>
+// ── ZONES ─────────────────────────────────────────────────────────────────────
 const ZONES={
   giza:    {name:'Zona 1 — Giza & Pirámides', color:'#C4622D'},
   islamico:{name:'Zona 2 — Cairo Islámico',   color:'#2B4F7A'},
@@ -356,6 +310,7 @@ const ZONES={
   mokatam: {name:'Zona 6 — Mokatam',          color:'#1A6B6B'},
 };
 
+// ── PIN POSITIONS (800×580 viewBox) ──────────────────────────────────────────
 const PP={
   gem:          {x:108, y:370},
   pyramids:     {x:75,  y:432},
@@ -383,6 +338,7 @@ const PP={
   ciudadela:    {x:588, y:318},
 };
 
+// ── PLACES ───────────────────────────────────────────────────────────────────
 const PL=[
   // GIZA
   {id:'gem',zone:'giza',icon:'🏛️',must:true,book:true,
@@ -408,7 +364,8 @@ const PL=[
    hours:'Lun–Dom 9:00–15:30 · Última entrada 15:30',
    prices:[{l:'Desayuno',v:'~200–350 EGP (≈4–7 €)'},{l:'Plato principal',v:'~300–500 EGP'},{l:'Bebidas',v:'~100–200 EGP'},{l:'Total aprox',v:'~10–15 € / persona'}],
    tip:'Reserva imprescindible. Pide mesa exterior.',warn:null,
-   bookUrl:'https://wa.me/201212299999',mapsUrl:'https://maps.google.com/?q=29.9678,31.1319'},
+   bookUrl:'tel:+201212299999',mapsUrl:'https://maps.google.com/?q=29.9678,31.1319'},
+
   // ISLÁMICO
   {id:'khankhalili',zone:'islamico',icon:'🛍️',must:true,book:false,
    name:'Khan el-Khalili',
@@ -421,7 +378,7 @@ const PL=[
   {id:'almuizz',zone:'islamico',icon:'🕌',must:true,book:false,
    name:'Calle Al-Muizz (de noche)',
    snippet:'La calle más antigua del Cairo islámico — espectacular de noche',
-   desc:'Arteria medieval peatonal con 1+ km de arquitectura fatimí, mameluca y otomana. De noche con los cairenos paseando es completamente diferente. Mezquitas, fuentes y comida callejera.',
+   desc:'Arteria medieval peatonal con 1+ km de arquitectura fatimí, mameluca y otomana. De noche con los cairenos paseando es completamente diferente. Mezquitas, fuentes y comida callejera. Conecta con Khan el-Khalili.',
    hours:'Siempre abierta · Mejor 19:00 en adelante',
    prices:[{l:'Entrada',v:'Gratis'},{l:'Comida de calle',v:'~20–50 EGP por bocado'}],
    tip:'Entra por Bab el-Futuh (norte) y baja caminando hasta Khan el-Khalili.',warn:null,
@@ -445,7 +402,7 @@ const PL=[
   {id:'alazhar',zone:'islamico',icon:'🌿',must:false,book:false,
    name:'Parque Al-Azhar',
    snippet:'El único parque verde del Cairo — vistas a la Ciudadela al atardecer',
-   desc:'Oasis inesperado en el Cairo islámico. Jardines escalonados con fuentes y vistas a la Ciudadela. Perfecto para el atardecer. Muy poco turístico.',
+   desc:'Oasis inesperado en el Cairo islámico. Jardines escalonados con fuentes y vistas a la Ciudadela. Perfecto para el atardecer. Muy poco turístico — aquí vienen familias cairenas.',
    hours:'Lun–Dom 9:00–22:00',
    prices:[{l:'Entrada',v:'~150 EGP (≈3 €) extranjeros'},{l:'Restaurante cima',v:'~200–400 EGP / persona'}],
    tip:'La hora mágica es 30 min antes del atardecer.',warn:null,
@@ -453,11 +410,12 @@ const PL=[
   {id:'omDahab',zone:'islamico',icon:'🍲',must:false,book:false,
    name:'Om Dahab',
    snippet:'Cocina familiar solo de boca en boca — solo a mediodía, se agota',
-   desc:'Escondida en el Cairo islámico, solo conocida entre locales. Abre únicamente a mediodía: fattah, paloma rellena y mahshi con calidez casera. Sin menú en inglés.',
+   desc:'Escondida en el Cairo islámico, solo conocida entre locales. Abre únicamente a mediodía: fattah, paloma rellena y mahshi con calidez casera absoluta. Sin menú en inglés.',
    hours:'Solo mediodía · Cierra cuando se acaba (~13:30)',
    prices:[{l:'Fattah ración',v:'~80–120 EGP (≈1,5–2,5 €)'},{l:'Paloma rellena',v:'~100–150 EGP'},{l:'Total',v:'~5 € / persona'}],
    tip:'Llega antes de la 1pm — la comida se agota.',warn:null,
    bookUrl:null,mapsUrl:'https://maps.google.com/?q=30.0460,31.2598'},
+
   // DOWNTOWN
   {id:'museoegip',zone:'downtown',icon:'🏺',must:false,book:false,
    name:'Museo Egipcio (Tahrir)',
@@ -470,7 +428,7 @@ const PL=[
   {id:'koshari',zone:'downtown',icon:'🍜',must:true,book:false,
    name:'Koshary El Tahrir',
    snippet:'El plato nacional de Egipto — ruidoso, rapidísimo, brutalmente barato',
-   desc:'El koshary es el plato nacional: arroz, pasta, lentejas, garbanzos, cebolla frita y salsa de tomate especiada. El referente de los cairenos. Señalas, te sirven en 2 minutos.',
+   desc:'El koshary es el plato nacional: arroz, pasta, lentejas, garbanzos, cebolla frita crujiente y salsa de tomate especiada. El referente de los cairenos. Señalas, te sirven en 2 minutos.',
    hours:'Lun–Dom 9:00–24:00',
    prices:[{l:'Ración pequeña',v:'~30 EGP (≈0,60 €)'},{l:'Ración grande',v:'~50–70 EGP (≈1–1,5 €)'},{l:'Con bebida',v:'~80–100 EGP (≈2 €)'}],
    tip:'Pide el tazón grande con todo.',warn:null,
@@ -478,7 +436,7 @@ const PL=[
   {id:'felfela',zone:'downtown',icon:'🍽️',must:true,book:false,
    name:'Felfela',
    snippet:'80 años de historia — paloma rellena, fattah y ta\'amiya',
-   desc:'Restaurante con 80 años de historia. Menú en inglés, ambiente auténtico: paloma rellena de arroz especiado, fattah, y ta\'amiya recién frita.',
+   desc:'Restaurante con 80 años de historia en el Downtown. Menú en inglés, ambiente auténtico y platos clásicos: paloma rellena de arroz especiado, fattah, y ta\'amiya recién frita.',
    hours:'Lun–Dom 10:00–24:00',
    prices:[{l:'Ta\'amiya / foul',v:'~40–80 EGP'},{l:'Paloma rellena',v:'~150–200 EGP (≈3–4 €)'},{l:'Fattah',v:'~120–180 EGP'},{l:'Total con bebida',v:'~10–15 € / persona'}],
    tip:'Pide la paloma rellena — su especialidad histórica desde los años 40.',warn:null,
@@ -507,11 +465,12 @@ const PL=[
    prices:[{l:'Sándwich kebda',v:'~25–40 EGP'},{l:'Sándwich sujuk',v:'~30–50 EGP'},{l:'Combo 2 sándwiches',v:'~60–80 EGP'}],
    tip:'Pide picante — cambia completamente el sabor.',warn:null,
    bookUrl:null,mapsUrl:'https://maps.google.com/?q=30.0502,31.2405'},
+
   // ZAMALEK
   {id:'dokdok',zone:'zamalek',icon:'⛵',must:true,book:false,
    name:'Dokdok — Felucas en el Nilo',
    snippet:'Alquila una feluca al atardecer — lo que hacen los cairenos',
-   desc:'Embarcadero donde los cairenos alquilan felucas (barcas de vela tradicionales) para pasear por el Nilo. Una de las experiencias más auténticas y baratas del Cairo. El barco es privado para ti.',
+   desc:'Embarcadero donde los cairenos alquilan felucas (barcas de vela tradicionales) para pasear por el Nilo. Una de las experiencias más auténticas y baratas del Cairo. El barco es privado para ti. Negocia el precio antes de subir.',
    hours:'Lun–Dom 10:00–23:00',
    prices:[{l:'Feluca privada 1h',v:'~800–1.200 EGP el barco entero'},{l:'Por persona (2 pax)',v:'~400–600 EGP'},{l:'Propina recomendada',v:'~100–200 EGP'}],
    tip:'Ve a las 17:30–18:00 para el atardecer.',
@@ -536,11 +495,12 @@ const PL=[
   {id:'sobhykaber',zone:'zamalek',icon:'🔥',must:false,book:false,
    name:'Sobhy Kaber',
    snippet:'El asador de los cairenos — kofta, paloma y molokhia en Shubra',
-   desc:'Asador enorme de varios pisos en el barrio obrero de Shubra. La mejor carne a la brasa del Cairo: kofta, kebab, chuletas, paloma rellena y molokhia.',
+   desc:'Asador enorme de varios pisos en el barrio obrero de Shubra. La mejor carne a la brasa del Cairo: kofta, kebab, chuletas, paloma rellena y molokhia. Sin pretensiones turísticas.',
    hours:'Lun–Dom 12:00–05:00',
    prices:[{l:'Kofta porción',v:'~100–150 EGP (≈2–3 €)'},{l:'Paloma rellena',v:'~150–200 EGP'},{l:'Total completo',v:'~8–12 € / persona'}],
    tip:'Ve después de las 21h cuando la carne recién marinada está en su punto.',warn:null,
    bookUrl:null,mapsUrl:'https://maps.google.com/?q=30.0838,31.2344'},
+
   // COPTO
   {id:'nmec',zone:'copto',icon:'🏛️',must:true,book:false,
    name:'Museo de Civilización (NMEC)',
@@ -558,11 +518,12 @@ const PL=[
    prices:[{l:'Entrada',v:'Gratis'},{l:'Museo Copto',v:'~60 EGP (≈1,2 €)'}],
    tip:'Madruga — a las 9am todavía no llegaron los grupos.',warn:null,
    bookUrl:null,mapsUrl:'https://maps.google.com/?q=30.0052,31.2302'},
+
   // MOKATAM
   {id:'mokatam',zone:'mokatam',icon:'🌄',must:true,book:false,
    name:'Mokatam — World View',
    snippet:'Las mejores vistas del Cairo — atardecer y ciudad iluminada',
-   desc:'Desde ~250m sobre el nivel del mar: la ciudad entera, el Nilo serpenteando, la Ciudadela iluminada y en días claros las pirámides al fondo. Plan ideal: llegar a las 18:30h, ver el atardecer, cenar en Sky Rim.',
+   desc:'Desde ~250m sobre el nivel del mar: la ciudad entera, el Nilo serpenteando, la Ciudadela iluminada y en días claros las pirámides al fondo. El lugar favorito de los cairenos para el atardecer. Plan ideal: llegar a las 18:30h, ver el atardecer, cenar en Sky Rim.',
    hours:'Siempre abierto · Mejor 18:30–21:00',
    prices:[{l:'Acceso mirador',v:'Gratis'},{l:'Té/shisha en cafés',v:'~50–150 EGP'}],
    tip:'Llega a las 18:30h — el sol se pone ~19:30h en abril.',
@@ -571,7 +532,7 @@ const PL=[
   {id:'skyrim',zone:'mokatam',icon:'🍽️',must:true,book:true,
    name:'Sky Rim — Palladium',
    snippet:'Cena con vistas panorámicas a El Cairo desde lo alto de Mokatam',
-   desc:'Restaurante con terraza abierta directamente sobre El Cairo. Sirve meze, ensaladas, pollo a la brasa y platos egipcios. La comida es correcta — lo extraordinario es la vista con la Ciudadela y la ciudad iluminada. Reserva por WhatsApp.',
+   desc:'Restaurante con terraza abierta directamente sobre El Cairo. Sirve meze, ensaladas, pollo a la brasa y platos egipcios. La comida es correcta — lo extraordinario es la vista con la Ciudadela y la ciudad iluminada. Reserva obligatoria por WhatsApp.',
    hours:'Todos los días desde las 16:00h',
    prices:[{l:'Meze / aperitivos',v:'~200–350 EGP / persona'},{l:'Plato principal',v:'~300–500 EGP (≈6–10 €)'},{l:'Total cena',v:'~800–1.000 EGP (≈16–20 €) / persona'}],
    tip:'Llega antes del atardecer (~18:30h). Reserva por WhatsApp: +20 120 222 2879.',
@@ -580,15 +541,17 @@ const PL=[
   {id:'ciudadela',zone:'mokatam',icon:'🏰',must:false,book:false,
    name:'Ciudadela de Saladino',
    snippet:'La fortaleza medieval — mejor terraza con vistas del Cairo islámico',
-   desc:'Fortaleza del siglo XII sobre las colinas de Mokatam. Desde su terraza, las mejores vistas del Cairo islámico con la mezquita de Hassan en primer plano.',
+   desc:'Fortaleza del siglo XII sobre las colinas de Mokatam. Desde su terraza, las mejores vistas del Cairo islámico con la mezquita de Hassan en primer plano. Dentro está la Mezquita de Mohamed Ali y museos militares.',
    hours:'Lun–Dom 8:00–16:30',
    prices:[{l:'Entrada',v:'~360 EGP (≈7 €) extranjeros'},{l:'Museos',v:'Incluidos'}],
    tip:'Busca la terraza Al-Gawhara para las mejores fotos.',warn:null,
    bookUrl:null,mapsUrl:'https://maps.google.com/?q=30.0286,31.2599'},
 ];
 
+// ── STATE ─────────────────────────────────────────────────────────────────────
 let activeZone=null, activePlace=null;
 
+// ── BUILD TABS ────────────────────────────────────────────────────────────────
 function buildTabs(){
   const c=document.getElementById('zoneTabs');
   const all=document.createElement('div');
@@ -601,12 +564,13 @@ function buildTabs(){
     t.className='ztab'; t.id='ztab-'+k; t.style.color=z.color;
     const parts=z.name.split('—');
     const num=parts[0].trim(); const name=(parts[1]||'').trim();
-    t.innerHTML=`<span class="ztab-dot" style="background:${z.color}"></span><span style="font-size:.56rem;opacity:.6">${num} ·</span> ${name}`;
+    t.innerHTML=`<span class="ztab-dot" style="background:${z.color}"></span><span style="font-size:.58rem;opacity:.6">${num} ·</span> ${name}`;
     t.onclick=()=>selectZone(k);
     c.appendChild(t);
   });
 }
 
+// ── BUILD PINS ────────────────────────────────────────────────────────────────
 function buildPins(){
   const layer=document.getElementById('pins-layer');
   layer.innerHTML='';
@@ -619,13 +583,6 @@ function buildPins(){
     g.setAttribute('id','pin-'+p.id);
     g.setAttribute('transform',`translate(${pos.x},${pos.y})`);
     g.setAttribute('data-id',p.id);
-
-    // Large invisible tap area (better mobile UX)
-    const tap=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    tap.setAttribute('class','pin-tap');
-    tap.setAttribute('cx','0'); tap.setAttribute('cy','0');
-    tap.setAttribute('r', p.must ? '22' : '18');
-    g.appendChild(tap);
 
     // Pulsing ring for must
     if(p.must){
@@ -693,25 +650,30 @@ function buildPins(){
   });
 }
 
+// ── SELECT ZONE ───────────────────────────────────────────────────────────────
 function selectZone(zone){
   activeZone=zone; activePlace=null;
   document.querySelectorAll('.ztab').forEach(t=>t.classList.remove('active'));
   const tab=document.getElementById('ztab-'+(zone||'all'));
   if(tab) tab.classList.add('active');
   document.querySelectorAll('.zone-area').forEach(el=>{
-    el.classList.toggle('dimmed',!!zone && el.dataset.zone!==zone);
-    el.classList.toggle('highlighted',!!zone && el.dataset.zone===zone);
+    const z=el.dataset.zone;
+    el.classList.toggle('dimmed',!!zone && z!==zone);
+    el.classList.toggle('highlighted',!!zone && z===zone);
   });
   document.querySelectorAll('.map-pin').forEach(pin=>{
-    const p=PL.find(x=>x.id===pin.getAttribute('data-id'));
+    const pid=pin.getAttribute('data-id');
+    const p=PL.find(x=>x.id===pid);
     pin.classList.toggle('dimmed-pin',!!zone && (!p||p.zone!==zone));
   });
   closeDetail();
 }
 
+// ── SELECT PLACE ──────────────────────────────────────────────────────────────
 function selectPlace(id){
   const p=PL.find(x=>x.id===id); if(!p) return;
   activePlace=id;
+  // Zone highlight
   if(activeZone!==p.zone){
     activeZone=p.zone;
     document.querySelectorAll('.ztab').forEach(t=>t.classList.remove('active'));
@@ -726,9 +688,10 @@ function selectPlace(id){
       pin.classList.toggle('dimmed-pin',!!pp && pp.zone!==p.zone);
     });
   }
+  // Pin highlight
   document.querySelectorAll('.map-pin').forEach(pin=>
     pin.classList.toggle('active-pin',pin.getAttribute('data-id')===id));
-
+  // Fill panel
   const z=ZONES[p.zone];
   document.getElementById('dIcon').textContent=p.icon;
   document.getElementById('dZone').textContent=z.name;
@@ -751,28 +714,79 @@ function selectPlace(id){
     mh+=`</div>`;
   }
   document.getElementById('dMeta').innerHTML=mh;
+  // Buttons — open in new tab
   const btns=[];
-  if(p.bookUrl) btns.push(`<a class="btn-b" href="${p.bookUrl}" target="_blank" rel="noopener">📅 Reservar / Contactar</a>`);
-  if(p.mapsUrl) btns.push(`<a class="btn-m" href="${p.mapsUrl}" target="_blank" rel="noopener">📍 Abrir en Google Maps</a>`);
+  if(p.bookUrl){
+    btns.push(`<a class="btn-b" href="${p.bookUrl}" target="_blank" rel="noopener">📅 Reservar / Contactar</a>`);
+  }
+  if(p.mapsUrl){
+    btns.push(`<a class="btn-m" href="${p.mapsUrl}" target="_blank" rel="noopener">📍 Abrir en Google Maps</a>`);
+  }
   document.getElementById('dCta').innerHTML=btns.join('');
-
-  // Open bottom sheet
   document.getElementById('detailPanel').classList.add('vis');
-  document.getElementById('sheetOverlay').classList.add('open');
+  // Scroll into view on mobile
+  if(window.innerWidth<640){
+    setTimeout(()=>document.getElementById('detailPanel').scrollIntoView({behavior:'smooth',block:'start'}),100);
+  }
 }
 
 function closeDetail(){
   document.getElementById('detailPanel').classList.remove('vis');
-  document.getElementById('sheetOverlay').classList.remove('open');
   document.querySelectorAll('.map-pin').forEach(p=>p.classList.remove('active-pin'));
   activePlace=null;
 }
 
+// ── INIT ──────────────────────────────────────────────────────────────────────
 buildTabs();
 buildPins();
 </script>
 
-<!-- GoatCounter -->
-<script data-goatcounter="https://shaila.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- GoatCounter tracking -->
+<script data-goatcounter="https://shaila.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<!-- Fetch and display visit stats -->
+<script>
+async function loadStats(){
+  try{
+    // Total pageviews
+    const r=await fetch('https://shaila.goatcounter.com/api/v0/stats/total',{
+      headers:{'Authorization':'Bearer ' + window._gcToken || ''}
+    });
+    // GoatCounter public stats endpoint (no auth needed for public sites)
+    const res=await fetch('https://shaila.goatcounter.com/api/v0/stats/hits?limit=1&daily=true');
+    if(res.ok){
+      const d=await res.json();
+      if(d.total) document.getElementById('vcTotal').textContent=d.total.toLocaleString();
+    }
+  }catch(e){}
+
+  // Use the public count endpoint to get a rough total
+  try{
+    const res=await fetch('https://shaila.goatcounter.com/api/v0/stats/browsers?limit=1');
+    if(res.ok){ /* fallback */ }
+  }catch(e){}
+
+  // Simpler: use GoatCounter's public JSON export
+  try{
+    const res=await fetch('https://shaila.goatcounter.com/json?start=2024-01-01&end=2099-01-01');
+    if(res.ok){
+      const d=await res.json();
+      if(d.total!==undefined){
+        document.getElementById('vcTotal').textContent=Number(d.total).toLocaleString();
+      }
+      if(d.today!==undefined){
+        document.getElementById('vcToday').textContent=Number(d.today).toLocaleString();
+      }
+      if(d.countries!==undefined){
+        document.getElementById('vcCountries').textContent=d.countries;
+      }
+    }
+  }catch(e){}
+}
+loadStats();
+// Refresh stats every 60 seconds
+setInterval(loadStats,60000);
+</script>
 </body>
 </html>
