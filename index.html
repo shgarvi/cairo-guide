@@ -24,7 +24,12 @@ header::before{content:'';position:absolute;inset:0;opacity:.04;
 header h1{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2.2rem);color:var(--sand);line-height:1.1;margin-bottom:.2rem;}
 header h1 em{color:var(--gold-light);font-style:italic;}
 .hsub{color:rgba(245,237,216,.4);font-size:.72rem;}
-
+  
+/* ── VISIT COUNTER ── */
+.visit-bar{background:rgba(0,0,0,.3);padding:.28rem 1rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);}
+.vstat{display:flex;align-items:center;gap:.32rem;font-size:.62rem;color:rgba(245,237,216,.5);}
+.vstat strong{color:var(--gold-light);font-weight:600;font-size:.72rem;}
+  
 /* ── ZONE BAR ── */
 .zone-bar{background:var(--deep);border-top:1px solid rgba(201,149,58,.15);
   padding:.45rem 1rem;display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;}
@@ -130,6 +135,8 @@ header h1 em{color:var(--gold-light);font-style:italic;}
 }
 </style>
 </head>
+  <script data-goatcounter="https://shaila.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 <body>
 
 <header>
@@ -139,6 +146,11 @@ header h1 em{color:var(--gold-light);font-style:italic;}
     <div class="hsub">Pincha en una zona o en un pin para ver detalles, precios y reservas</div>
   </div>
   <div class="zone-bar" id="zoneTabs"></div>
+  <div class="visit-bar" id="visitBar">
+  <div class="vstat">👁️ Visitas totales: <strong id="vcTotal">—</strong></div>
+  <div class="vstat">🌍 Países: <strong id="vcCountries">—</strong></div>
+  <div class="vstat">📅 Hoy: <strong id="vcToday">—</strong></div>
+</div>
 </header>
 
 <div class="app">
