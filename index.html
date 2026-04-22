@@ -498,7 +498,7 @@ function buildTabs(){
     t.className='ztab'; t.id='ztab-'+k; t.style.color=z.color;
     const parts=z.name.split('—');
     const num=parts[0].trim(); const name=(parts[1]||'').trim();
-    t.innerHTML=`<span class="ztab-dot" style="background:${z.color}"></span><span style="pointer-events:none;font-size:.56rem;opacity:.6">${num} ·</span><span style="pointer-events:none"> ${name}</span>`;
+    t.innerHTML=`<span class="ztab-dot" style="background:${z.color}"></span><span style="font-size:.56rem;opacity:.6">${num} · ${name}</span>`;
     t.onclick=()=>selectZone(k);
     c.appendChild(t);
   });
