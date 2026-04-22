@@ -488,7 +488,7 @@ function buildTabs(){
   const c=document.getElementById('zoneTabs');
   const all=document.createElement('div');
   all.className='ztab active'; all.id='ztab-all';
-  all.innerHTML=`<span class="ztab-dot" style="background:rgba(245,237,216,.35);pointer-events:none"></span><span style="pointer-events:none">Todos</span>`;
+  all.textContent='Todos';
   all.onclick=()=>selectZone(null);
   c.appendChild(all);
   Object.entries(ZONES).forEach(([k,z])=>{
